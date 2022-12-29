@@ -42,8 +42,8 @@ Also here are two scripts which allows you to start and run chatbots for Telegra
 
 ## Example how TG bot works
 
-![script started](https://github.com/babrounik/devman_chatbots_lesson_3/blob/master/img/tg_bot_example.gif?raw=true)
+![tg bot](https://github.com/babrounik/devman_chatbots_lesson_3/blob/main/img/tg_bot_example.gif?raw=true)
 
 ## Example how TG bot works
 
-![script started](https://github.com/babrounik/devman_chatbots_lesson_3/blob/master/img/vk_bot_example.gif?raw=true)
+![vk bot](https://github.com/babrounik/devman_chatbots_lesson_3/blob/main/img/vk_bot_example.gif?raw=true)
