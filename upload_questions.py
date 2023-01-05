@@ -38,11 +38,11 @@ def main() -> None:
     with open('questions.json') as file_with_questions:
         questions_file_content = file_with_questions.read()
 
-    questions_file_content_json = json.loads(questions_file_content)
+    questions_file_content = json.loads(questions_file_content)
 
-    for display_name in questions_file_content_json.keys():
-        training_phrases_parts = questions_file_content_json[display_name]['questions']
-        message_texts = questions_file_content_json[display_name]['answer']
+    for display_name in questions_file_content.keys():
+        training_phrases_parts = questions_file_content[display_name]['questions']
+        message_texts = questions_file_content[display_name]['answer']
         create_intent(project_id, display_name, training_phrases_parts, [message_texts])
 
 
