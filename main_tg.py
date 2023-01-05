@@ -39,8 +39,7 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Help!')
 
 
-def echo(update: Update, context: CallbackContext) -> None:
-    """Echo the user message."""
+def reply(update: Update, context: CallbackContext) -> None:
 
     project_id = os.getenv("DIALOGFLOW_PROJECT")
     session_id = f'tg-{os.getenv("ARTSIOM_CHAT_ID")}'
@@ -49,7 +48,6 @@ def echo(update: Update, context: CallbackContext) -> None:
     response = detect_intent_texts(project_id, session_id, texts, language_code)
 
     update.message.reply_text(response)
-    # update.message.reply_text(update.message.text)
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
@@ -97,7 +95,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("help", help_command))
 
     # on non command i.e message - echo the message on Telegram
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply))
 
     # Start the Bot
     updater.start_polling()
