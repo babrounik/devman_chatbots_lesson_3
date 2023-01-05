@@ -35,12 +35,12 @@ def main() -> None:
     load_dotenv(".env")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
     path_to_questions = os.getenv['QUESTIONS_PATH']
-    with open() as file_with_questions:
+    with open(path_to_questions) as file_with_questions:
         questions_file_content = file_with_questions.read()
 
     questions_file_content = json.loads(questions_file_content)
 
-    for display_name in questions_file_content.keys():
+    for display_name in questions_file_content:
         training_phrases_parts = questions_file_content[display_name]['questions']
         message_texts = questions_file_content[display_name]['answer']
         create_intent(project_id, display_name, training_phrases_parts, [message_texts])
