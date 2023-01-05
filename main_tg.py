@@ -6,20 +6,12 @@ Then, the bot is started and runs until we press Ctrl-C on the command line.
 Usage:
 Press Ctrl-C on the command line or send a signal to the process to stop the bot.
 """
-
-import logging
 import os
 from dotenv import load_dotenv
 
 from dialogflow import detect_intent_texts
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
-
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
-)
-
-logger = logging.getLogger(__name__)
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -48,6 +40,7 @@ def reply(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     """Start the bot."""
+
     load_dotenv("./.env")
     tg_api_token = os.getenv("TG_API_KEY")
     updater = Updater(tg_api_token)
