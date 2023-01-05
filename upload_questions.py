@@ -40,9 +40,8 @@ def main() -> None:
 
     questions_file_content = json.loads(questions_file_content)
 
-    for display_name in questions_file_content:
-        training_phrases_parts = questions_file_content[display_name]['questions']
-        message_texts = questions_file_content[display_name]['answer']
+    for display_name, topic in questions_file_content:
+        training_phrases_parts, message_texts = topic['questions'], topic['answer']
         create_intent(project_id, display_name, training_phrases_parts, [message_texts])
 
 
