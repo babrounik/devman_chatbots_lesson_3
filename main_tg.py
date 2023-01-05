@@ -43,7 +43,7 @@ def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
 
     project_id = os.getenv("DIALOGFLOW_PROJECT")
-    session_id = os.getenv("MY_CHAT_ID")
+    session_id = f'tg-{os.getenv("ARTSIOM_CHAT_ID")}'
     texts = update.message.text
     language_code = "RU"
     response = detect_intent_texts(project_id, session_id, texts, language_code)

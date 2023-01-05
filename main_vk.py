@@ -56,7 +56,7 @@ if __name__ == "__main__":
     load_dotenv("./.env")
     vk_token = os.getenv("VK_COM")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
-    session_id = os.getenv("ARTSIOM_CHAT_ID")
+    session_id = f'vk-{os.getenv("ARTSIOM_CHAT_ID")}'
     LANGUAGE_CODE = "RU"
     vk_session = vk.VkApi(token=vk_token)
     vk_api = vk_session.get_api()
