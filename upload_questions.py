@@ -34,8 +34,8 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 def main() -> None:
     load_dotenv(".env")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
-
-    with open('questions.json') as file_with_questions:
+    path_to_questions = os.getenv['QUESTIONS_PATH']
+    with open() as file_with_questions:
         questions_file_content = file_with_questions.read()
 
     questions_file_content = json.loads(questions_file_content)
