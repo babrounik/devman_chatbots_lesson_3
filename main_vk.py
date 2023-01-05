@@ -40,16 +40,13 @@ def detect_intent_texts(project_id, session_id, text, language_code):
         return None
 
 
-def echo(event, vk_api):
-    project_id = os.getenv("DIALOGFLOW_PROJECT")
-    session_id = os.getenv("ARTSIOM_CHAT_ID")
-    texts = event.text
-    language_code = "RU"
-    response = detect_intent_texts(project_id, session_id, texts, language_code)
+def echo(_event, _vk_api, _project_id, _session_id, _language_code):
+    texts = _event.text
+    response = detect_intent_texts(_project_id, _session_id, texts, _language_code)
 
     if response:
-        vk_api.messages.send(
-            user_id=event.user_id,
+        _vk_api.messages.send(
+            user_id=_event.user_id,
             message=response,
             random_id=random.randint(1, 1000)
         )
@@ -58,9 +55,12 @@ def echo(event, vk_api):
 if __name__ == "__main__":
     load_dotenv("./.env")
     vk_token = os.getenv("VK_COM")
+    project_id = os.getenv("DIALOGFLOW_PROJECT")
+    session_id = os.getenv("ARTSIOM_CHAT_ID")
+    LANGUAGE_CODE = "RU"
     vk_session = vk.VkApi(token=vk_token)
     vk_api = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            echo(event, vk_api)
+            echo(event, vk_api, project_id, session_id, LANGUAGE_CODE)
