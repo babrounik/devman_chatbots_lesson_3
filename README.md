@@ -24,9 +24,12 @@ Also here are two scripts which allows you to start and run chatbots for Telegra
 >>> echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 >>> echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 >>> echo 'export PATH="$PYENV_ROOT/shims:$PATH"' >> ~/.zshrc
->>> echo 'export TG_TOKEN=INSERT_YOUR_VALUE' >> ~/.zshrc
->>> echo 'export TG_CHAT_ID=INSERT_YOUR_VALUE' >> ~/.zshrc
->>> echo 'export DEVMAN_KEY=INSERT_YOUR_VALUE' >> ~/.zshrc
+>>> echo 'export TG_API_KEY=INSERT_YOUR_VALUE' >> ~/.zshrc
+>>> echo 'export VK_COM=INSERT_YOUR_VALUE' >> ~/.zshrc
+>>> echo 'export DIALOGFLOW_PROJECT=INSERT_YOUR_VALUE' >> ~/.zshrc
+>>> echo 'export ARTSIOM_CHAT_ID=INSERT_YOUR_VALUE' >> ~/.zshrc
+>>> echo 'export GOOGLE_APPLICATION_CREDENTIALS=INSERT_YOUR_VALUE' >> ~/.zshrc
+>>> echo 'export QUESTIONS_PATH=INSERT_YOUR_VALUE' >> ~/.zshrc
 >>> source ~/.zshrc
 >>> pyenv intall 3.9.11
 >>> pyenv rehash
