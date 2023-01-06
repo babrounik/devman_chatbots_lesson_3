@@ -19,7 +19,7 @@ def reply(_event, _vk_api, _project_id, _session_id, _language_code):
         )
 
 
-if __name__ == "__main__":
+def main() -> None:
     load_dotenv("./.env")
     vk_token = os.getenv("VK_COM")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
@@ -31,3 +31,7 @@ if __name__ == "__main__":
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
             reply(event, vk_api, project_id, session_id, LANGUAGE_CODE)
+
+
+if __name__ == "__main__":
+    main()

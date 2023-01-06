@@ -28,14 +28,15 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Help!')
 
 
-def reply(update: Update, context: CallbackContext) -> None:
-    project_id = os.getenv("DIALOGFLOW_PROJECT")
-    session_id = f'tg-{os.getenv("ARTSIOM_CHAT_ID")}'
-    texts = update.message.text
-    language_code = "RU"
-    response = detect_intent_texts(project_id, session_id, texts, language_code)
+def reply(_project_id, _session_id):
+    def reply_inner(update: Update, context: CallbackContext) -> None:
+        texts = update.message.text
+        language_code = "RU"
+        response = detect_intent_texts(_project_id, _session_id, texts, language_code)
 
-    update.message.reply_text(response)
+        update.message.reply_text(response)
+
+    return reply_inner
 
 
 def main() -> None:
@@ -43,6 +44,8 @@ def main() -> None:
 
     load_dotenv("./.env")
     tg_api_token = os.getenv("TG_API_KEY")
+    project_id = os.getenv("DIALOGFLOW_PROJECT")
+    session_id = f'tg-{os.getenv("ARTSIOM_CHAT_ID")}'
     updater = Updater(tg_api_token)
 
     dispatcher = updater.dispatcher
@@ -50,7 +53,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
 
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply(project_id, session_id)))
 
     updater.start_polling()
 
