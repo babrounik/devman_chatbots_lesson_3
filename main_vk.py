@@ -8,8 +8,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 
 
 def reply(_event, _vk_api, _project_id, _session_id, _language_code):
-    texts = _event.text
-    response = detect_intent_texts(_project_id, _session_id, texts, _language_code)
+    response = detect_intent_texts(_project_id, _session_id, _event.text, _language_code)
 
     if response:
         _vk_api.messages.send(
