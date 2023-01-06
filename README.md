@@ -15,7 +15,7 @@ Also here are two scripts which allows you to start and run chatbots for Telegra
 * connect github to heroku and press "Deploy Brunch"
 * then go to Resources section and run your Free Dyno via Edit & switch slider to ON state
 
-## How to run local script
+## How to run local script on MacOS
 
 ```
 >>> brew update
