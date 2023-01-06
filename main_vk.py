@@ -23,13 +23,13 @@ def main() -> None:
     vk_token = os.getenv("VK_COM")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
     session_id = f'vk-{os.getenv("ARTSIOM_CHAT_ID")}'
-    LANGUAGE_CODE = "RU"
+    language_code = "RU"
     vk_session = vk.VkApi(token=vk_token)
     vk_api = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            reply(event, vk_api, project_id, session_id, LANGUAGE_CODE)
+            reply(event, vk_api, project_id, session_id, language_code)
 
 
 if __name__ == "__main__":
