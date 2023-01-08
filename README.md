@@ -17,6 +17,8 @@ Also here are two scripts which allows you to start and run chatbots for Telegra
 
 ## How to run local script on MacOS
 
+YOU-SESSION-ID must be a unique identifier for a session.  
+
 ```
 >>> brew update
 >>> $ brew install pyenv
@@ -27,7 +29,6 @@ Also here are two scripts which allows you to start and run chatbots for Telegra
 >>> echo 'export TG_API_KEY=INSERT_YOUR_VALUE' >> ~/.zshrc
 >>> echo 'export VK_COM=INSERT_YOUR_VALUE' >> ~/.zshrc
 >>> echo 'export DIALOGFLOW_PROJECT=INSERT_YOUR_VALUE' >> ~/.zshrc
->>> echo 'export ARTSIOM_CHAT_ID=INSERT_YOUR_VALUE' >> ~/.zshrc
 >>> echo 'export GOOGLE_APPLICATION_CREDENTIALS=INSERT_YOUR_VALUE' >> ~/.zshrc
 >>> echo 'export QUESTIONS_PATH=INSERT_YOUR_VALUE' >> ~/.zshrc
 >>> source ~/.zshrc
@@ -40,8 +41,8 @@ Also here are two scripts which allows you to start and run chatbots for Telegra
 >>> pipenv shell $(which python3)
 >>> git clone https://github.com/babrounik/devman_chatbots_lesson_3.git
 >>> pipenv install -r requirements.txt
->>> python3 main_tg.py
->>> python3 main_vk.py
+>>> python3 main_tg.py YOU-SESSION-ID
+>>> python3 main_vk.py YOU-SESSION-ID
 ```
 
 ## Example how TG bot works

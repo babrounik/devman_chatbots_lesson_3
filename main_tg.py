@@ -6,6 +6,7 @@ Then, the bot is started and runs until we press Ctrl-C on the command line.
 Usage:
 Press Ctrl-C on the command line or send a signal to the process to stop the bot.
 """
+import argparse
 import os
 from functools import partial
 from dotenv import load_dotenv
@@ -32,10 +33,13 @@ def reply(update: Update, context: CallbackContext, _project_id, _session_id, _l
 def main() -> None:
     """Start the bot."""
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("session_id")
+    session_id = parser.parse_args().session_id
+
     load_dotenv("./.env")
     tg_api_token = os.getenv("TG_API_KEY")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
-    session_id = f'tg-{os.getenv("ARTSIOM_CHAT_ID")}'
     language_code = "RU"
     updater = Updater(tg_api_token)
     dispatcher = updater.dispatcher
