@@ -27,8 +27,7 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def reply(update: Update, context: CallbackContext, _project_id, _language_code) -> None:
     response = detect_intent_texts(_project_id, update.effective_user, update.message.text, _language_code)
-    if response:
-        update.message.reply_text(response)
+    update.message.reply_text(response.query_result.fulfillment_text)
 
 
 def main() -> None:

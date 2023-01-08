@@ -10,13 +10,14 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 
 def reply(_event, _vk_api, _project_id, _language_code):
     response = detect_intent_texts(_project_id, _event.user_id, _event.text, _language_code)
-
-    if response:
+    if not response.query_result.intent.is_fallback:
         _vk_api.messages.send(
             user_id=_event.user_id,
-            message=response,
+            message=response.query_result.fulfillment_text,
             random_id=random.randint(1, 1000)
         )
+    else:
+        pass
 
 
 def main() -> None:

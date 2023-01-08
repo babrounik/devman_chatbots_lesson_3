@@ -41,8 +41,8 @@ YOU-SESSION-ID must be a unique identifier for a session.
 >>> pipenv shell $(which python3)
 >>> git clone https://github.com/babrounik/devman_chatbots_lesson_3.git
 >>> pipenv install -r requirements.txt
->>> python3 main_tg.py YOU-SESSION-ID
->>> python3 main_vk.py YOU-SESSION-ID
+>>> python3 main_tg.py
+>>> python3 main_vk.py
 ```
 
 ## Example how TG bot works
