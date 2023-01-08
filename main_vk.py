@@ -16,8 +16,6 @@ def reply(_event, _vk_api, _project_id, _language_code):
             message=response.query_result.fulfillment_text,
             random_id=random.randint(1, 1000)
         )
-    else:
-        pass
 
 
 def main() -> None:
