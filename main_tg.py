@@ -25,17 +25,13 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def reply(update: Update, context: CallbackContext, _project_id, _session_id, _language_code) -> None:
-    response = detect_intent_texts(_project_id, _session_id, update.message.text, _language_code)
+def reply(update: Update, context: CallbackContext, _project_id, _language_code) -> None:
+    response = detect_intent_texts(_project_id, update.effective_user, update.message.text, _language_code)
     update.message.reply_text(response)
 
 
 def main() -> None:
     """Start the bot."""
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("session_id")
-    session_id = parser.parse_args().session_id
 
     load_dotenv("./.env")
     tg_api_token = os.getenv("TG_API_KEY")
@@ -47,7 +43,6 @@ def main() -> None:
     dispatcher.add_handler(
         MessageHandler(Filters.text & ~Filters.command, partial(reply,
                                                                 _project_id=project_id,
-                                                                _session_id=session_id,
                                                                 _language_code=language_code))
     )
     updater.start_polling()

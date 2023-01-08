@@ -8,8 +8,8 @@ from dialogflow import detect_intent_texts
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 
-def reply(_event, _vk_api, _project_id, _session_id, _language_code):
-    response = detect_intent_texts(_project_id, _session_id, _event.text, _language_code)
+def reply(_event, _vk_api, _project_id, _language_code):
+    response = detect_intent_texts(_project_id, _event.user_id, _event.text, _language_code)
 
     if response:
         _vk_api.messages.send(
@@ -20,11 +20,6 @@ def reply(_event, _vk_api, _project_id, _session_id, _language_code):
 
 
 def main() -> None:
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("session_id")
-    session_id = parser.parse_args().session_id
-
     load_dotenv("./.env")
     vk_token = os.getenv("VK_COM")
     project_id = os.getenv("DIALOGFLOW_PROJECT")
@@ -34,7 +29,7 @@ def main() -> None:
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            reply(event, vk_api, project_id, session_id, language_code)
+            reply(event, vk_api, project_id, language_code)
 
 
 if __name__ == "__main__":
