@@ -7,6 +7,7 @@ Usage:
 Press Ctrl-C on the command line or send a signal to the process to stop the bot.
 """
 import os
+from functools import partial
 from dotenv import load_dotenv
 
 from dialogflow import detect_intent_texts
@@ -23,12 +24,9 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def reply(_project_id, _session_id, language_code):
-    def reply_inner(update: Update, context: CallbackContext) -> None:
-        response = detect_intent_texts(_project_id, _session_id, update.message.text, language_code)
-        update.message.reply_text(response)
-
-    return reply_inner
+def reply(update: Update, context: CallbackContext, _project_id, _session_id, _language_code) -> None:
+    response = detect_intent_texts(_project_id, _session_id, update.message.text, _language_code)
+    update.message.reply_text(response)
 
 
 def main() -> None:
@@ -43,7 +41,10 @@ def main() -> None:
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(
-        MessageHandler(Filters.text & ~Filters.command, reply(project_id, session_id, language_code))
+        MessageHandler(Filters.text & ~Filters.command, partial(reply,
+                                                                _project_id=project_id,
+                                                                _session_id=session_id,
+                                                                _language_code=language_code))
     )
     updater.start_polling()
     updater.idle()
